@@ -5,7 +5,10 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import com.miqdad.noteapp.R
+import com.miqdad.noteapp.data.locale.entity.Notes
+import com.miqdad.noteapp.data.locale.entity.Priority
 
 object HelperFunction {
 
@@ -27,5 +30,21 @@ object HelperFunction {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         return listener
+    }
+
+    fun parseToPriority(context: Context?,priority: String): Priority {
+        val arrPriority = context?.resources?.getStringArray(R.array.priorities)
+        return when (priority){
+            arrPriority?.get(0) -> Priority.HIGH
+            arrPriority?.get(1) -> Priority.MEDIUM
+            arrPriority?.get(2) -> Priority.LOW
+            else -> Priority.HIGH
+        }
+    }
+
+    val emptyDataBase : MutableLiveData<Boolean> = MutableLiveData(true)
+
+    fun checkDataIsEmpty(data : List<Notes>){
+        emptyDataBase.value = data.isEmpty()
     }
 }

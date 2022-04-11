@@ -1,10 +1,7 @@
 package com.miqdad.noteapp.data.locale.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.miqdad.noteapp.data.locale.entity.Notes
 
 @Dao
@@ -28,7 +25,10 @@ interface NotesDao {
     @Query("DELETE FROM tb_notes")
     suspend fun deleteAllData()
 
-    @Delete()
+    @Delete
     suspend fun deleteNote(notes: Notes)
+
+    @Update
+    suspend fun updateNote(notes: Notes)
 
 }

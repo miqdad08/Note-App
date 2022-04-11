@@ -18,6 +18,7 @@ import com.miqdad.noteapp.data.locale.entity.Priority
 import com.miqdad.noteapp.databinding.FragmentAddBinding
 import com.miqdad.noteapp.ui.NotesViewModel
 import com.miqdad.noteapp.utils.ExtensionFunction.setActionBar
+import com.miqdad.noteapp.utils.HelperFunction.parseToPriority
 import com.miqdad.noteapp.utils.HelperFunction.setPriorityColor
 import java.text.SimpleDateFormat
 import java.util.*
@@ -70,7 +71,7 @@ class AddFragment : Fragment() {
             val desc = edtDescription.text.toString()
 
             val calendar = Calendar.getInstance().time
-            val date = SimpleDateFormat("dd-mm-yyyy", Locale.getDefault()).format(calendar)
+            val date = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(calendar)
 
             val priority = spinnerPriorities.selectedItem.toString()
 
@@ -85,7 +86,7 @@ class AddFragment : Fragment() {
                 }
 
             }else{
-                val data = Notes(0, title, desc, date, parseToPriority(priority))
+                val data = Notes(0, title, desc, date, parseToPriority(context, priority))
                 addViewModel.insertNotes(data)
                 findNavController().navigate(R.id.action_addFragment_to_homeFragment)
                 Toast.makeText(context, "Sukses NgeAdd Note", Toast.LENGTH_SHORT).show()
@@ -96,15 +97,7 @@ class AddFragment : Fragment() {
         }
     }
 
-    private fun parseToPriority(priority: String): Priority {
-        val arrPriority = resources.getStringArray(R.array.priorities)
-        return when (priority){
-            arrPriority[0] -> Priority.HIGH
-            arrPriority[1] -> Priority.MEDIUM
-            arrPriority[2] -> Priority.LOW
-            else -> Priority.HIGH
-        }
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

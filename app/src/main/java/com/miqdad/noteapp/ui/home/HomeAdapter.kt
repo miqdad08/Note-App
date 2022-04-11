@@ -24,24 +24,26 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = listNotes.get(position)
         holder.binding.apply {
-            tvTitle.text = data.title
-            tvDescription.text = data.desc
-            tvDate.text = data.date
+//            tvTitle.text = data.title
+//            tvDescription.text = data.desc
+//            tvDate.text = data.date
+            mNotes = data
+            executePendingBindings()
 
-            when(data.priority){
-                Priority.HIGH -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
-                )
-                Priority.MEDIUM -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.yellow)
-                )
-                Priority.LOW -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.green)
-                )
-                else -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
-                )
-            }
+//            when(data.priority){
+//                Priority.HIGH -> priorityIndicator.setCardBackgroundColor(
+//                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
+//                )
+//                Priority.MEDIUM -> priorityIndicator.setCardBackgroundColor(
+//                    ContextCompat.getColor(priorityIndicator.context, R.color.yellow)
+//                )
+//                Priority.LOW -> priorityIndicator.setCardBackgroundColor(
+//                    ContextCompat.getColor(priorityIndicator.context, R.color.green)
+//                )
+//                else -> priorityIndicator.setCardBackgroundColor(
+//                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
+//                )
+//            }
         }
     }
 

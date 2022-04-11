@@ -36,6 +36,7 @@
     <style name="NoActionBar" parent="Theme.NoteApp">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
 
 </resources>

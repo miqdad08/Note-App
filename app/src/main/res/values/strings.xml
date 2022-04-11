@@ -8,8 +8,8 @@
     <string name="txt_priority">Priority</string>
     <string name="txt_date">Date</string>
     <string name="txt_add">Add</string>
-    <string name="txt_detail">fragment_detail</string>
-    <string name="txt_update">fragment_update</string>
+    <string name="txt_detail">Detail</string>
+    <string name="txt_update">Update</string>
     <string name="content_fab_add_note">Fab Note</string>
     <string name="content_image_no_data">image no data</string>
     <string name="txt_sort">Sort</string>
@@ -20,4 +20,5 @@
     <string name="txt_save">Save</string>
     <string name="txt_edit">Edit</string>
     <string name="txt_delete">Delete</string>
+    <string name="txt_undo">Undo</string>
 </resources>

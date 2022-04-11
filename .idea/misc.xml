@@ -5,17 +5,20 @@
       <map>
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/bg_custom_input.xml" value="0.1215" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/bg_light_gray_radius.xml" value="0.1215" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/bg_splash_screen.xml" value="0.1235" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1415" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/ic_left_arrow.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/ic_save.xml" value="0.1215" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/ic_search.xml" value="0.1415" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/drawable/ic_sort.xml" value="0.1415" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/activity_main.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.2171875" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/fragment_add.xml" value="0.1308876811594203" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/fragment_detail.xml" value="0.1308876811594203" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/fragment_update.xml" value="0.1308876811594203" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/layout_menu_save.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/row_item_notes.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/layout/row_item_notes.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/menu/menu_detail.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/menu/menu_home.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/NoteApp/app/src/main/res/menu/menu_save.xml" value="0.2171875" />

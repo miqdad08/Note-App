@@ -6,17 +6,21 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.miqdad.noteapp.R
 import com.miqdad.noteapp.data.locale.entity.Notes
 import com.miqdad.noteapp.databinding.FragmentHomeBinding
 import com.miqdad.noteapp.ui.NotesViewModel
 import com.miqdad.noteapp.utils.ExtensionFunction.setActionBar
+import com.miqdad.noteapp.utils.HelperFunction
+import com.miqdad.noteapp.utils.HelperFunction.checkDataIsEmpty
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -41,7 +45,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.mHelperFunction = HelperFunction
         setHasOptionsMenu(true)
         binding.apply {
             toolbarHome.setActionBar(requireActivity())
@@ -162,11 +166,23 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = homeAdapter.listNotes[viewHolder.adapterPosition]
                 homeViewModel.deleteNote(deletedItem)
+                restoreData(viewHolder.itemView, deletedItem)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDelete)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
+
+    private fun restoreData(view: View, deletedItem: Notes) {
+        Snackbar.make(view, "Deleted : ${deletedItem.title}", Snackbar.LENGTH_LONG)
+            .setTextColor(ContextCompat.getColor(view.context, R.color.black))
+            .setAction(getString(R.string.txt_undo)){
+                homeViewModel.insertNotes(deletedItem)
+            }
+            .setActionTextColor(ContextCompat.getColor(view.context, R.color.black))
+            .show()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

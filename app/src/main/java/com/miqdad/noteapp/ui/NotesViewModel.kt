@@ -44,4 +44,10 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
             notesRepository.deleteNote(notes)
         }
     }
+
+    fun updateData(notes: Notes){
+        viewModelScope.launch(Dispatchers.IO) {
+            notesRepository.updateNote(notes)
+        }
+    }
 }

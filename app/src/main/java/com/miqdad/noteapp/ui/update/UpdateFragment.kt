@@ -4,26 +4,26 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.appbar.MaterialToolbar
-import com.miqdad.noteapp.MainActivity
+import androidx.navigation.fragment.navArgs
 import com.miqdad.noteapp.R
+import com.miqdad.noteapp.data.locale.entity.Notes
 import com.miqdad.noteapp.databinding.FragmentUpdateBinding
+import com.miqdad.noteapp.ui.NotesViewModel
 import com.miqdad.noteapp.utils.ExtensionFunction.setActionBar
+import com.miqdad.noteapp.utils.HelperFunction.parseToPriority
 import com.miqdad.noteapp.utils.HelperFunction.setPriorityColor
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UpdateFragment : Fragment() {
 
-    private var _binding : FragmentUpdateBinding? = null
+    private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding as FragmentUpdateBinding
+    private val args by navArgs<UpdateFragmentArgs>()
+    private val updateViewModel by viewModels<NotesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +38,7 @@ class UpdateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
+        binding.updateArgs = args
 
 //        val navController = findNavController()
 //        val appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -53,7 +54,8 @@ class UpdateFragment : Fragment() {
 //        }
         binding.apply {
             toolbarUpdate.setActionBar(requireActivity())
-            spinnerPrioritiesUpdate.onItemSelectedListener= context?.let { setPriorityColor(it, priorityIndicator) }
+            spinnerPrioritiesUpdate.onItemSelectedListener =
+                context?.let { setPriorityColor(it, priorityIndicator) }
         }
     }
 
@@ -62,9 +64,30 @@ class UpdateFragment : Fragment() {
         inflater.inflate(R.menu.menu_save, menu)
         val item = menu.findItem(R.id.menu_save)
         item.actionView.findViewById<AppCompatImageButton>(R.id.btn_save).setOnClickListener {
-            findNavController().navigate(R.id.action_updateFragment_to_detailFragment)
-            Toast.makeText(context, "Note has been update ", Toast.LENGTH_SHORT).show()
+            updateNote()
+
         }
+    }
+
+    private fun updateNote() {
+        binding.apply {
+            val title = edtTitleUpdate.text.toString()
+            val desc = edtDescriptionUpdate.text.toString()
+            val priority = spinnerPrioritiesUpdate.selectedItem.toString()
+
+            val date = Calendar.getInstance().time
+            val formattedDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(date)
+
+            val currentData = Notes(
+                args.notes.id, title, desc, formattedDate, parseToPriority(
+                    context, priority
+                )
+            )
+            updateViewModel.updateData(currentData)
+            val action = UpdateFragmentDirections.actionUpdateFragmentToDetailFragment(currentData)
+            findNavController().navigate(action)
+        }
+        Toast.makeText(context, "Note has been update ", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
